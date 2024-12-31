@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  </head>
+  <body>
+    <h1>Custom application to learn deployment.</h1>
+    <p>
+      This is an index.html file served from /static folder by an express
+      server.
+    </p>
+    <p id="application-version">App version:</p>
+  </body>
+  <script>
+    const getVersion = async () => {
+      return await fetch("/api/version");
+    };
+    (async () => {
+      document.getElementById("application-version").textContent += (
+        await (await getVersion()).json()
+      ).version;
+    })();
+  </script>
+</html>
